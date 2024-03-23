@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 
+// 1:22:00
+
+
 const Schema = mongoose.Schema
 
 export interface Product {

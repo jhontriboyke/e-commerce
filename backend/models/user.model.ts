@@ -7,6 +7,7 @@ export interface UserProps {
   email: string
   password: string
   isAdmin?: boolean
+  id?: string
 }
 
 const userSchema = new Schema<UserProps>({
@@ -27,7 +28,7 @@ const userSchema = new Schema<UserProps>({
   isAdmin: {
     type: Boolean,
     default: false
-  }
+  },
 }, {
   timestamps: true
 })
