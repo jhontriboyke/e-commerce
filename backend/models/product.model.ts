@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema
 
-export interface Product {
+export interface ProductProps {
   title: string
   desc: string
   image: string
@@ -15,7 +15,7 @@ export interface Product {
   price: number
 }
 
-const productSchema = new Schema<Product>({
+const productSchema = new Schema<ProductProps>({
   title: { type: String, required: true, unique: true },
   desc: { type: String, required: true },
   image: { type: String, required: true },

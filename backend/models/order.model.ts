@@ -1,31 +1,41 @@
-import mongoose from "mongoose";
-
-const Schema = mongoose.Schema
+import mongoose, { Schema, Document } from "mongoose";
 
 export interface Product {
-  productId: string,
-  quantity: number
+  productId: string;
+  quantity: number;
 }
 
-export interface Order {
-  userId: number
-  products: Product[]
-  amount: number
-  address: object
-  status: "pending" | "shipping" | "received"
+export interface AddressProps {
+  street: string;
+  city: string;
+  state: string;
+  country: string;
 }
 
-const orderSchema = new Schema<Order>({
-  userId: { type: Number, required: true },
-  products: [{
-    productId: { type: String },
-    quantity: { type: Number, default: 1 },
-  }],
-  amount: { type: Number, required: true },
-  address: { type: Object, required: true },
-  status: { type: String, default: "pending" }
-}, {
-  timestamps: true
-})
+export interface OrderProps extends Document {
+  userId: string;
+  products: Product[];
+  amount: number;
+  address: AddressProps; // Mengubah type menjadi AddressProps
+  status: "pending" | "shipping" | "received";
+}
 
-export default mongoose.model("Order", orderSchema)
+const orderSchema = new Schema<OrderProps>(
+  {
+    userId: { type: String, required: true },
+    products: [
+      {
+        productId: { type: String },
+        quantity: { type: Number, default: 1 },
+      },
+    ],
+    amount: { type: Number, required: true },
+    address: { type: Object, required: true },
+    status: { type: String, default: "pending" },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+export default mongoose.model<OrderProps>("Order", orderSchema);

@@ -2,17 +2,17 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema
 
-export interface Product {
+export interface ProductCartProps {
   productId: string,
   quantity: number
 }
 
-export interface Cart {
+export interface CartProps {
   userId: number
-  products: Product[]
+  products: ProductCartProps[]
 }
 
-const cartSchema = new Schema<Cart>({
+const cartSchema = new Schema<CartProps>({
   userId: { type: Number, required: true },
   products: [{
     productId: { type: String },

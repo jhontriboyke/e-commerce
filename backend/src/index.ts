@@ -4,6 +4,9 @@ import mongoose from "mongoose"
 import * as dotenv from "dotenv"
 import { router as userRoutes } from "../routes/user.routes"
 import { router as authRoute } from "../routes/auth.routes"
+import { router as productRoute } from "../routes/product.routes"
+import { router as cartRoute } from "../routes/cart.routes"
+import { router as orderRoute } from "../routes/order.routes"
 
 // Define server and configs
 const app = express()
@@ -14,6 +17,9 @@ app.use(cors())
 // Define routes
 app.use("/api/auth", authRoute)
 app.use("/api/users", userRoutes)
+app.use("/api/products", productRoute)
+app.use("/api/carts", cartRoute)
+app.use("/api/orders", orderRoute)
 
 // Running server and connecting to MongoDB
 const PORT = 8800
